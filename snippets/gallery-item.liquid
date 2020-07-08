@@ -1,0 +1,12 @@
+{% if image %}
+	<a href="{{url}}" class="custom-gallery-item">
+		{% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
+	  <img class="gallery__image lazyload"
+	    src="{{ image | img_url: '300x300' }}"
+	    data-src="{{ img_url }}"
+	    data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
+	    data-aspectratio="{{ image.aspect_ratio }}"
+	    data-sizes="auto"
+	    alt="{{ image.alt | escape }}">
+	</a>
+{% endif %}

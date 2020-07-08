@@ -1,0 +1,111 @@
+{% for block in section.blocks %}
+    {% case block.type %}
+        {% when 'gallery' %}
+        {% include 'gallery' %}
+        {% when 'slideshow' %}
+        {% include 'slideshow' %}
+        {% when 'image-with-text' %}
+        {% include 'image-with-text' %}
+    {% endcase %}
+{% endfor %}
+{% schema %}
+{
+  "blocks": [
+    {
+      "type": "gallery",
+      "name": "Gallery",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image-1",
+          "label": "Image 1"
+        },
+        {
+          "type": "url",
+          "id": "link-1",
+          "label": "Image link 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image-2",
+          "label": "Image 2"
+        },
+        {
+          "type": "url",
+          "id": "link-2",
+          "label": "Image link 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image-3",
+          "label": "Image 3"
+        },
+        {
+          "type": "url",
+          "id": "link-3",
+          "label": "Image link 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "image-4",
+          "label": "Image 4"
+        },
+        {
+          "type": "url",
+          "id": "link-4",
+          "label": "Image link 4"
+        }
+      ]
+    },
+    {
+      "type": "image-with-text",
+      "name": "Image with text",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Image alignment",
+          "default": "left",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Image with text"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
