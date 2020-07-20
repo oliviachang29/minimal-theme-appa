@@ -41,12 +41,14 @@
             {% capture wrapper_id %}ProductImageWrapper-{{ featured.featured_image.id }}{% endcapture %}
             {%- assign img_url = featured.featured_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
 
+            <!-- {{featured.featured_image | img_url: '1x1' | replace: '_1x1.', '_150x150.' }} -->
+
             {% include 'image-style' with image: featured.featured_image, width: product_width, height: 480, wrapper_id: wrapper_id, img_id: img_id %}
             <div id="{{ wrapper_id }}" class="product__img-wrapper supports-js">
-              <div style="padding-top:{{ 1 | divided_by: featured.featured_image.aspect_ratio | times: 100}}%;">
+              <div style="padding-top:100%;">
                 <img id="{{ img_id }}"
                      alt="{{ featured.featured_image.alt | escape }}"
-                     class="product__img lazyload"
+                     class="product__img lazyload product-image-test"
                      data-src="{{ img_url }}"
                      data-widths="[150, 220, 360, 470, 600, 750, 940, 1080, 1296, 1512, 1728, 2048]"
                      data-aspectratio="{{ featured.featured_image.aspect_ratio }}"

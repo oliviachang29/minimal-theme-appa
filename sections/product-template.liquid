@@ -71,7 +71,7 @@
 
           {% if product.images.size > 1 %}
 
-            <ul class="product-single__thumbnails grid-uniform" id="ProductThumbs">
+            <!-- <ul class="product-single__thumbnails grid-uniform" id="ProductThumbs">
               {% for image in product.images %}
                 <li class="grid__item wide--one-quarter large--one-third medium-down--one-third">
                   <a data-image-id="{{ image.id }}" href="{{ image.src | img_url: '1024x1024' }}" class="product-single__thumbnail">
@@ -79,7 +79,15 @@
                   </a>
                 </li>
               {% endfor %}
-            </ul>
+            </ul> -->
+
+            <div class="product-images" id="ProductThumbs">
+              {% for image in product.images %}
+                <a data-image-id="{{ image.id }}" href="{{ image.src | img_url: '1024x1024' }}" class="product-single__thumbnail">
+                  <img src="{{ image.src | img_url: 'grande' }}" alt="{{ image.alt | escape }}">
+                </a>
+              {% endfor %}
+            </div>
 
           {% endif %}
 
@@ -138,20 +146,18 @@
 
         <h1>The tabs will go here</h1>
 
-        <div>
-          <ul class="product-tabs">
-            {% for tab in product.metafields.tabs %}
-              <li>
-                <a href="#{{ tab[0] | handleize}}">{{tab[0]}}</a>
-              </li>
-            {% endfor %}
-          </ul>
-          {% for tab in section.blocks %}
-            <div id="{{ tab[0] | handleize}}">
-              {{ tab[1] }}
-            </div>
+        <ul class="product-tabs">
+          {% for tab in product.metafields.tabs %}
+          <li>
+            <a href="#{{ tab[0] | handleize}}">{{tab[0]}}</a>
+          </li>
           {% endfor %}
-        </div>
+        </ul>
+        {% for tab in product.metafields.tabs %}
+          <div id="{{ tab[0] | handleize}}">
+            {{ tab[1] }}
+          </div>
+        {% endfor %}
 
         {% if section.settings.product_image_zoom_type == 'lightbox' %}
         <ul class="gallery" class="hidden">
@@ -794,6 +800,25 @@
             "zh-CN": "大",
             "zh-TW": "大型"
           }
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_tab",
+      "name": "Product Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_name",
+          "label": "Tab Name"
+        },
+        {
+          "type": "richtext",
+          "id": "tab_text",
+          "label": "Tab text",
+          "default": "<p>Example tab text.</p>"
         }
       ]
     }
